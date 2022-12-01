@@ -1,0 +1,615 @@
+object FormPedido: TFormPedido
+  Left = 0
+  Top = 0
+  Caption = 'Pedido'
+  ClientHeight = 394
+  ClientWidth = 724
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 724
+    Height = 41
+    Align = alTop
+    BevelOuter = bvNone
+    TabOrder = 0
+    ExplicitTop = 9
+    object btnPesquisarPedido: TButton
+      Left = 150
+      Top = 0
+      Width = 75
+      Height = 41
+      Align = alLeft
+      Caption = 'Pesquisar'
+      TabOrder = 2
+      OnClick = btnPesquisarPedidoClick
+    end
+    object btnCriarPedido: TButton
+      Left = 0
+      Top = 0
+      Width = 75
+      Height = 41
+      Align = alLeft
+      Caption = 'Criar'
+      TabOrder = 0
+      OnClick = btnCriarPedidoClick
+    end
+    object btnGravarPedido: TButton
+      Left = 225
+      Top = 0
+      Width = 75
+      Height = 41
+      Align = alLeft
+      Caption = 'Gravar'
+      TabOrder = 3
+      Visible = False
+      OnClick = btnGravarPedidoClick
+    end
+    object btnCancelarPedido: TButton
+      Left = 300
+      Top = 0
+      Width = 75
+      Height = 41
+      Align = alLeft
+      Caption = 'Cancelar'
+      TabOrder = 4
+      Visible = False
+      OnClick = btnCancelarPedidoClick
+    end
+    object btnAlterarPedido: TButton
+      Left = 75
+      Top = 0
+      Width = 75
+      Height = 41
+      Align = alLeft
+      Caption = 'Alterar'
+      TabOrder = 1
+      OnClick = btnAlterarPedidoClick
+    end
+  end
+  object GroupBox1: TGroupBox
+    Left = 0
+    Top = 41
+    Width = 724
+    Height = 72
+    Align = alTop
+    Caption = 'Pedido'
+    TabOrder = 1
+    ExplicitTop = 35
+    object Panel2: TPanel
+      Left = 7
+      Top = 42
+      Width = 435
+      Height = 21
+      BevelOuter = bvNone
+      TabOrder = 2
+      object Label2: TLabel
+        AlignWithMargins = True
+        Left = 124
+        Top = 0
+        Width = 276
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        AutoSize = False
+        Layout = tlCenter
+        ExplicitLeft = 141
+        ExplicitTop = 1
+        ExplicitHeight = 19
+      end
+      object Label11: TLabel
+        AlignWithMargins = True
+        Left = 3
+        Top = 0
+        Width = 37
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        Caption = 'Cliente:'
+        Layout = tlCenter
+        ExplicitHeight = 13
+      end
+      object btnBuscaCliente: TButton
+        AlignWithMargins = True
+        Left = 95
+        Top = 0
+        Width = 26
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        ImageIndex = 0
+        Images = ImageList1
+        TabOrder = 1
+        OnClick = btnBuscaClienteClick
+      end
+      object edCliente: TEdit
+        AlignWithMargins = True
+        Left = 43
+        Top = 0
+        Width = 49
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        ReadOnly = True
+        TabOrder = 0
+        OnChange = edClienteChange
+      end
+    end
+    object Panel6: TPanel
+      Left = 153
+      Top = 15
+      Width = 130
+      Height = 21
+      BevelOuter = bvNone
+      TabOrder = 1
+      object Label7: TLabel
+        AlignWithMargins = True
+        Left = 3
+        Top = 0
+        Width = 42
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        Caption = 'Emiss'#227'o:'
+        Layout = tlCenter
+        ExplicitHeight = 13
+      end
+      object edEmissao: TDatePicker
+        AlignWithMargins = True
+        Left = 45
+        Top = 0
+        Width = 74
+        Height = 21
+        Margins.Left = 0
+        Margins.Top = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        Date = 44895.000000000000000000
+        DateFormat = 'dd/MM/yyyy'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        TabOrder = 0
+      end
+    end
+    object Panel8: TPanel
+      Left = 8
+      Top = 15
+      Width = 118
+      Height = 21
+      BevelOuter = bvNone
+      TabOrder = 0
+      object Label9: TLabel
+        AlignWithMargins = True
+        Left = 3
+        Top = 0
+        Width = 36
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        Caption = 'Pedido:'
+        Layout = tlCenter
+        ExplicitHeight = 13
+      end
+      object edPedido: TEdit
+        AlignWithMargins = True
+        Left = 42
+        Top = 0
+        Width = 49
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        ReadOnly = True
+        TabOrder = 0
+        OnChange = edProdutoChange
+      end
+    end
+  end
+  object GroupBox2: TGroupBox
+    Left = 0
+    Top = 113
+    Width = 724
+    Height = 103
+    Align = alTop
+    Caption = 'Itens'
+    TabOrder = 2
+    object Panel3: TPanel
+      Left = 3
+      Top = 12
+      Width = 436
+      Height = 21
+      BevelOuter = bvNone
+      TabOrder = 0
+      object lblProduto: TLabel
+        AlignWithMargins = True
+        Left = 127
+        Top = 0
+        Width = 298
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        AutoSize = False
+        Layout = tlCenter
+      end
+      object Label10: TLabel
+        AlignWithMargins = True
+        Left = 3
+        Top = 0
+        Width = 42
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        Caption = 'Produto:'
+        Layout = tlCenter
+        ExplicitHeight = 13
+      end
+      object btnBuscaProduto: TButton
+        AlignWithMargins = True
+        Left = 100
+        Top = 0
+        Width = 24
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        ImageIndex = 0
+        Images = ImageList1
+        TabOrder = 1
+        OnClick = btnBuscaProdutoClick
+      end
+      object edProduto: TEdit
+        AlignWithMargins = True
+        Left = 48
+        Top = 0
+        Width = 49
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        ReadOnly = True
+        TabOrder = 0
+        OnChange = edProdutoChange
+      end
+    end
+    object Panel4: TPanel
+      Left = 23
+      Top = 36
+      Width = 105
+      Height = 21
+      BevelOuter = bvNone
+      TabOrder = 1
+      object Label5: TLabel
+        AlignWithMargins = True
+        Left = 3
+        Top = 0
+        Width = 22
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        Caption = 'Qtd:'
+        Layout = tlCenter
+        ExplicitHeight = 13
+      end
+      object nbQtd: TNumberBox
+        AlignWithMargins = True
+        Left = 28
+        Top = 0
+        Width = 69
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        Alignment = taRightJustify
+        AutoSize = False
+        Mode = nbmFloat
+        TabOrder = 0
+      end
+    end
+    object Panel5: TPanel
+      Left = 153
+      Top = 36
+      Width = 129
+      Height = 21
+      BevelOuter = bvNone
+      TabOrder = 2
+      object Label6: TLabel
+        AlignWithMargins = True
+        Left = 3
+        Top = 0
+        Width = 50
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        Caption = 'Valor Unit:'
+        Layout = tlCenter
+        ExplicitHeight = 13
+      end
+      object nbValor: TNumberBox
+        AlignWithMargins = True
+        Left = 56
+        Top = 0
+        Width = 73
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        Alignment = taRightJustify
+        AutoSize = False
+        Mode = nbmFloat
+        TabOrder = 0
+      end
+    end
+    object Panel9: TPanel
+      Left = 2
+      Top = 63
+      Width = 720
+      Height = 38
+      Align = alBottom
+      BevelOuter = bvNone
+      TabOrder = 3
+      ExplicitLeft = 3
+      ExplicitTop = 62
+      object btnInserirProduto: TButton
+        Left = 0
+        Top = 0
+        Width = 75
+        Height = 38
+        Align = alLeft
+        Caption = 'Inserir'
+        TabOrder = 0
+        OnClick = btnInserirProdutoClick
+      end
+      object btnCancelarProduto: TButton
+        Left = 75
+        Top = 0
+        Width = 75
+        Height = 38
+        Align = alLeft
+        Caption = 'Cancelar'
+        TabOrder = 1
+        Visible = False
+        OnClick = btnCancelarProdutoClick
+      end
+    end
+  end
+  object Panel10: TPanel
+    Left = 0
+    Top = 362
+    Width = 724
+    Height = 32
+    Align = alBottom
+    BevelOuter = bvNone
+    TabOrder = 4
+    object Panel7: TPanel
+      Left = 550
+      Top = 6
+      Width = 123
+      Height = 21
+      BevelOuter = bvNone
+      TabOrder = 0
+      object Label8: TLabel
+        AlignWithMargins = True
+        Left = 3
+        Top = 0
+        Width = 28
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        Caption = 'Total:'
+        Layout = tlCenter
+        ExplicitHeight = 13
+      end
+      object nbTotal: TNumberBox
+        AlignWithMargins = True
+        Left = 34
+        Top = 0
+        Width = 87
+        Height = 21
+        Margins.Top = 0
+        Margins.Right = 0
+        Margins.Bottom = 0
+        Align = alLeft
+        Alignment = taRightJustify
+        AutoSize = False
+        Mode = nbmFloat
+        ReadOnly = True
+        TabOrder = 0
+      end
+    end
+  end
+  object Grid: TStringGrid
+    Left = 0
+    Top = 216
+    Width = 724
+    Height = 146
+    Align = alClient
+    ColCount = 6
+    TabOrder = 3
+    OnKeyDown = GridKeyDown
+  end
+  object ImageList1: TImageList
+    Left = 576
+    Top = 8
+    Bitmap = {
+      494C010101000800040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      0000000000003600000028000000400000001000000001002000000000000010
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000C5C5C546686868B9D2D2D235000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000008383
+      8398303030FF303030FF303030FFBEBEBE4F0000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000000000008181819B3030
+      30FF303030FF303030FF303030FF343434FA0000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000094949483303030FF3030
+      30FF303030FF303030FF303030FF757575AA0000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000000000000000000000000000B9B9
+      B9543E3E3EED303030FF303030FF797979A5FEFEFE01303030FF303030FF3030
+      30FF303030FF303030FF3C3C3CEF000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000FCFCFC03303030FE3030
+      30FF303030FF303030FF303030FF303030FF303030FF303030FF303030FF3030
+      30FF303030FF3C3C3CEF00000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000303030FF303030FF3030
+      30FF8D8D8D8CDBDBDB29BEBEBE4E3B3B3BF1303030FF303030FF303030FF3030
+      30FF434343E70000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000005C5C5CC8303030FF303030FF0000
+      0000000000000000000000000000000000008C8C8C8D303030FF303030FF0000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000303030FF303030FFEAEAEA180000
+      00000000000000000000000000000000000000000000303030FE303030FFA4A4
+      A46F000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000303030FF303030FFE6E6E61C3030
+      30FF000000000000000000000000000000000000000090909088303030FF5454
+      54D2000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000303030FF303030FFD2D2D2333030
+      30FF00000000000000000000000000000000000000009E9E9E76303030FF4A4A
+      4ADE000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000303030FF303030FF000000003030
+      30FF9A9A9A7C00000000000000000000000000000000424242E8303030FF8686
+      8695000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000383838F5303030FF484848E1DBDB
+      DB2C575757CE000000000000000000000000E2E2E222303030FF303030FFF9F9
+      F906000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000F2F2F20F303030FF303030FF3F3F
+      3FECF6F6F60A00000000000000009C9C9C79303030FF303030FF565656D00000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      00000000000000000000000000000000000000000000C6C6C645303030FF3030
+      30FF303030FF303030FF303030FF303030FF303030FF404040EB000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000FAFAFA054949
+      49DF303030FF303030FF303030FF303030FFB0B0B06000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      0000000000000000000000000000000000000000000000000000000000000000
+      000000000000000000000000000000000000424D3E000000000000003E000000
+      2800000040000000100000000100010000000000800000000000000000000000
+      000000000000000000000000FFFFFF00FFF1000000000000FFE0000000000000
+      FFC0000000000000FF80000000000000E0010000000000008003000000000000
+      80070000000000001F1F0000000000001F8F0000000000000F8F000000000000
+      0F8F000000000000278F000000000000070F000000000000061F000000000000
+      803F000000000000C07F00000000000000000000000000000000000000000000
+      000000000000}
+  end
+end
