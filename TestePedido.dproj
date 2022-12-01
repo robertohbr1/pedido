@@ -129,16 +129,16 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="Pedido.pas">
+        <DCCReference Include="View\View.Pedido.pas">
             <Form>FormPedido</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="formPesquisa.pas">
+        <DCCReference Include="View\View.Pesquisa.pas">
             <Form>Pesquisa</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Utils.pas"/>
-        <DCCReference Include="DMMain.pas">
+        <DCCReference Include="Controler\Controler.Utils.pas"/>
+        <DCCReference Include="Model\Model.Main.pas">
             <Form>DM</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>

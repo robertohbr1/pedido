@@ -1,4 +1,4 @@
-unit Utils;
+unit Controler.Utils;
 
 interface
 
@@ -26,7 +26,7 @@ function BuscaDescricao(SQL: string; Valor: string): string;
 
 procedure ValidaZero(Controle: TWinControl; Valor: Double; Msg: string);
 procedure ValidaVazio(Controle: TWinControl; Valor: string; Msg: string);
-function ValidaCodigoExiste(Controle: TWinControl; Valor: string): boolean;
+procedure ValidaCodigoExiste(Controle: TWinControl; Valor: string);
 
 procedure Mostrar(sMensagem : string);
 Function Perguntar(sMensagem : string; iDefault : integer = MB_DEFBUTTON1) : Boolean;
@@ -36,7 +36,7 @@ CONST NAO_ENCONTRADO = '*** Não encontrado ***';
 
 implementation
 
-uses System.SysUtils, DMMain;
+uses System.SysUtils, Model.Main;
 
 procedure SendKeysTab;
 begin
@@ -135,7 +135,7 @@ begin
     GeraErro(Controle, Msg);
 end;
 
-function ValidaCodigoExiste(Controle: TWinControl; Valor: string): boolean;
+procedure ValidaCodigoExiste(Controle: TWinControl; Valor: string);
 begin
   if Valor = NAO_ENCONTRADO then
     GeraErro(Controle, 'Código inválido');

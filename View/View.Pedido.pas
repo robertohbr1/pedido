@@ -1,4 +1,4 @@
-unit Pedido;
+unit View.Pedido;
 
 interface
 
@@ -13,7 +13,7 @@ uses
   Vcl.Grids, Data.Bind.EngExt, Vcl.Bind.DBEngExt, System.Rtti,
   System.Bindings.Outputs, Vcl.Bind.Editors, Data.Bind.Components,
   Data.Bind.DBScope, Vcl.Mask, Vcl.DBCtrls, System.ImageList, Vcl.ImgList,
-  Vcl.NumberBox, Vcl.WinXPickers, DMMain;
+  Vcl.NumberBox, Vcl.WinXPickers;
 
 type
   TFormPedido = class(TForm)
@@ -116,7 +116,7 @@ implementation
 
 {$R *.dfm}
 
-uses formPesquisa, Math, Utils;
+uses Math, View.Pesquisa, Controler.Utils;
 
 Const EditState = [dsEdit, dsInsert];
 

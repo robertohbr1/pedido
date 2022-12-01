@@ -1,4 +1,4 @@
-unit DMMain;
+unit Model.Main;
 
 interface
 
@@ -30,7 +30,7 @@ implementation
 
 {$R *.dfm}
 
-uses IniFiles, Utils, Vcl.Dialogs;
+uses IniFiles, Controler.Utils, Vcl.Dialogs;
 
 procedure TDM.AbreConnection;
 var oArquivoINI: Tinifile;

@@ -1,4 +1,4 @@
-unit formPesquisa;
+unit View.Pesquisa;
 
 interface
 
@@ -32,7 +32,7 @@ var
 
 implementation
 
-uses DMMain;
+uses Model.Main;
 
 {$R *.dfm}
 

@@ -2,10 +2,10 @@ program TestePedido;
 
 uses
   Vcl.Forms,
-  Pedido in 'Pedido.pas' {FormPedido},
-  formPesquisa in 'formPesquisa.pas' {Pesquisa},
-  Utils in 'Utils.pas',
-  DMMain in 'DMMain.pas' {DM: TDataModule};
+  View.Pedido in 'View\View.Pedido.pas' {FormPedido},
+  View.Pesquisa in 'View\View.Pesquisa.pas' {Pesquisa},
+  Controler.Utils in 'Controler\Controler.Utils.pas',
+  Model.Main in 'Model\Model.Main.pas' {DM: TDataModule};
 
 {$R *.res}
 
