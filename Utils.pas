@@ -2,7 +2,7 @@ unit Utils;
 
 interface
 
-uses FireDAC.Comp.Client, Vcl.Controls;
+uses FireDAC.Comp.Client, Vcl.Controls, Winapi.Windows, Vcl.Forms;
 
 procedure SendKeysTab;
 
@@ -26,10 +26,17 @@ function BuscaDescricao(SQL: string; Valor: string): string;
 
 procedure ValidaZero(Controle: TWinControl; Valor: Double; Msg: string);
 procedure ValidaVazio(Controle: TWinControl; Valor: string; Msg: string);
+function ValidaCodigoExiste(Controle: TWinControl; Valor: string): boolean;
+
+procedure Mostrar(sMensagem : string);
+Function Perguntar(sMensagem : string; iDefault : integer = MB_DEFBUTTON1) : Boolean;
+
+
+CONST NAO_ENCONTRADO = '*** Não encontrado ***';
 
 implementation
 
-uses Winapi.Windows, System.SysUtils, Vcl.Forms, DMMain;
+uses System.SysUtils, DMMain;
 
 procedure SendKeysTab;
 begin
@@ -80,7 +87,10 @@ function BuscaValor(SQL: string): string;
 var Query: TFDQuery;
 begin
   AbreQuery(Query, SQL);
-  result := Query.Fields[0].AsString;
+  if Query.eof then
+    result := NAO_ENCONTRADO
+  else
+    result := Query.Fields[0].AsString;
   FechaQuery(Query);
 end;
 
@@ -123,6 +133,22 @@ procedure ValidaVazio(Controle: TWinControl; Valor: string; Msg: string);
 begin
   if Valor = '' then
     GeraErro(Controle, Msg);
+end;
+
+function ValidaCodigoExiste(Controle: TWinControl; Valor: string): boolean;
+begin
+  if Valor = NAO_ENCONTRADO then
+    GeraErro(Controle, 'Código inválido');
+end;
+
+Function Perguntar(sMensagem : string; iDefault : integer = MB_DEFBUTTON1) : Boolean;
+begin
+  result := application.MessageBox(pChar(sMensagem), pChar('Questão'), mb_YesNo + mb_IconQuestion + iDefault) = idYes;
+end;
+
+procedure Mostrar(sMensagem : string);
+begin
+  application.MessageBox(pChar(sMensagem), pChar('Aviso'), MB_OK);
 end;
 
 end.

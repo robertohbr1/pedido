@@ -14,7 +14,6 @@ uses
 type
   TPesquisa = class(TForm)
     DBGrid1: TDBGrid;
-    WktechConnection: TFDConnection;
     Table: TFDQuery;
     DataSource1: TDataSource;
     procedure DBGrid1DblClick(Sender: TObject);
@@ -33,6 +32,8 @@ var
 
 implementation
 
+uses DMMain;
+
 {$R *.dfm}
 
 function Pesquisar(Tabela : string): boolean;
@@ -48,12 +49,19 @@ begin
   else
     raise Exception.Create('Tabela ' + Tabela + ' não configurada na Pesquisar');
   PesquisaRetorno := '';
+
   Application.CreateForm(TPesquisa, Pesquisa);
-  Pesquisa.Visible := False;
-  Pesquisa.Table.Active := False;
-  Pesquisa.Table.SQL.Text := SQL;
-  Pesquisa.Table.Active := True;
-  Pesquisa.ShowModal;
+
+  With Pesquisa do
+  begin
+    Visible := False;
+    Table.Connection := Dm.WktechConnection;
+    Table.Active := False;
+    Table.SQL.Text := SQL;
+    Table.Active := True;
+    ShowModal;
+  end;
+
   Result := (PesquisaRetorno <> '');
   FreeAndNil(Pesquisa);
 end;

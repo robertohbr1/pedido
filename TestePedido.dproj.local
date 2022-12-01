@@ -15,14 +15,14 @@
     <Transaction>2022/11/29 15:05:50.000.286,C:\Projetos\Job\WKTech\DM.pas=C:\Projetos\Job\WKTech\Unit2.pas</Transaction>
     <Transaction>2022/11/29 15:07:32.000.260,=C:\Projetos\Job\WKTech\Browse.pas</Transaction>
     <Transaction>2022/11/29 15:18:35.000.587,C:\Projetos\Job\WKTech\Browse.pas=</Transaction>
-    <Transaction>2022/11/30 23:11:47.980,=C:\Projetos\Job\WKTech\Unit1.pas</Transaction>
-    <Transaction>2022/11/30 23:12:28.698,C:\Projetos\Job\WKTech\Utils.pas=C:\Projetos\Job\WKTech\Unit1.pas</Transaction>
-    <Transaction>2022/11/30 23:22:02.824,C:\Projetos\Job\WKTech\DMConnection.dfm=C:\Projetos\Job\WKTech\DM.dfm</Transaction>
-    <Transaction>2022/11/30 23:22:02.824,C:\Projetos\Job\WKTech\DMConnection.pas=C:\Projetos\Job\WKTech\DM.pas</Transaction>
-    <Transaction>2022/11/30 23:33:00.614,C:\Projetos\Job\WKTech\DMConnection.pas=</Transaction>
-    <Transaction>2022/11/30 23:33:11.958,=C:\Projetos\Job\WKTech\DM.pas</Transaction>
-    <Transaction>2022/11/30 23:34:48.568,C:\Projetos\Job\WKTech\DMMain.pas=C:\Projetos\Job\WKTech\DM.pas</Transaction>
-    <Transaction>2022/11/30 23:34:48.568,C:\Projetos\Job\WKTech\DMMain.dfm=C:\Projetos\Job\WKTech\DM.dfm</Transaction>
+    <Transaction>2022/11/30 23:11:47.000.980,=C:\Projetos\Job\WKTech\Unit1.pas</Transaction>
+    <Transaction>2022/11/30 23:12:28.000.698,C:\Projetos\Job\WKTech\Utils.pas=C:\Projetos\Job\WKTech\Unit1.pas</Transaction>
+    <Transaction>2022/11/30 23:22:02.000.824,C:\Projetos\Job\WKTech\DMConnection.dfm=C:\Projetos\Job\WKTech\DM.dfm</Transaction>
+    <Transaction>2022/11/30 23:22:02.000.824,C:\Projetos\Job\WKTech\DMConnection.pas=C:\Projetos\Job\WKTech\DM.pas</Transaction>
+    <Transaction>2022/11/30 23:33:00.000.614,C:\Projetos\Job\WKTech\DMConnection.pas=</Transaction>
+    <Transaction>2022/11/30 23:33:11.000.958,=C:\Projetos\Job\WKTech\DM.pas</Transaction>
+    <Transaction>2022/11/30 23:34:48.000.568,C:\Projetos\Job\WKTech\DMMain.pas=C:\Projetos\Job\WKTech\DM.pas</Transaction>
+    <Transaction>2022/11/30 23:34:48.000.568,C:\Projetos\Job\WKTech\DMMain.dfm=C:\Projetos\Job\WKTech\DM.dfm</Transaction>
   </Transactions>
 	<BT_BuildType>Debug</BT_BuildType>
 </BorlandProject>

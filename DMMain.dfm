@@ -1,5 +1,6 @@
 object DM: TDM
   OldCreateOrder = False
+  OnCreate = DataModuleCreate
   Height = 244
   Width = 746
   object FDPhysMySQLDriverLink1: TFDPhysMySQLDriverLink
@@ -9,6 +10,9 @@ object DM: TDM
   end
   object WktechConnection: TFDConnection
     Params.Strings = (
+      'Password='
+      'Database='
+      'User_Name='
       'ConnectionDef=wktech')
     LoginPrompt = False
     Left = 382

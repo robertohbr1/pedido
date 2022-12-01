@@ -23,7 +23,7 @@ type
     btnBuscaProduto: TButton;
     ImageList1: TImageList;
     Panel2: TPanel;
-    Label2: TLabel;
+    lblCliente: TLabel;
     Panel3: TPanel;
     lblProduto: TLabel;
     btnCriarPedido: TButton;
@@ -89,6 +89,7 @@ type
     procedure CarregaGrid;
     procedure FormatGrid;
     procedure GravaGrid;
+    procedure LimpaGrid;
     procedure InsereGrid(idpedido_item, idproduto: integer; descricao: string; qtd, valor_unit: double);
     procedure UpdateGrid(row: integer; qtd, valor_unit: double);
 
@@ -152,11 +153,6 @@ begin
   end;
 end;
 
-Function Perguntar(sMensagem : string; iDefault : integer = MB_DEFBUTTON1) : Boolean;
-begin
-  result := application.MessageBox(pChar(sMensagem), pChar('Questão'), mb_YesNo + mb_IconQuestion + iDefault) = idYes;
-end;
-
 procedure TFormPedido.AjustaBotoesPrincipais(bEdicao: boolean);
 begin
   btnPesquisarPedido.Visible := not bEdicao;
@@ -211,6 +207,8 @@ end;
 
 procedure TFormPedido.btnGravarPedidoClick(Sender: TObject);
 begin
+  ValidaCodigoExiste(edCliente, lblCliente.Caption);
+
   GravarPedido;
   AjustaBotoesPrincipais(False);
 end;
@@ -245,6 +243,13 @@ begin
   edEmissao.Date := now;
   edCliente.Text := '';
   nbTotal.Value := 0;
+
+  LimpaGrid;
+end;
+
+procedure TFormPedido.LimpaGrid;
+begin
+  Grid.RowCount := 1;
 end;
 
 procedure TFormPedido.VaiUltimoPedido;
@@ -282,7 +287,8 @@ end;
 
 procedure TFormPedido.btnInserirProdutoClick(Sender: TObject);
 begin
-  ValidaVazio(btnBuscaProduto, edProduto.Text, 'Informe o Produto');
+  ValidaVazio(edProduto, edProduto.Text, 'Informe o Produto');
+  ValidaCodigoExiste(edProduto, lblProduto.Caption);
 
   ValidaZero(nbQtd, nbQtd.Value, 'Informe a Quantidade');
   ValidaZero(nbValor, nbValor.Value, 'Informe o Valor Unitário');
@@ -301,13 +307,13 @@ end;
 
 procedure TFormPedido.edClienteChange(Sender: TObject);
 begin
-  Label2.Caption := BuscaDescricao('Select nome from cliente where idcliente = ', edCliente.Text);
+  lblCliente.Caption := BuscaDescricao('Select nome from cliente where idcliente = ', edCliente.Text);
 end;
 
 procedure TFormPedido.CarregaGrid;
 var Query: TFDQuery;
 begin
-  Grid.RowCount := 1;
+  LimpaGrid;
 
   AbreQuery(Query, 'SELECT pedido_item.*, produto.descricao '
       + ' FROM pedido_item '
@@ -339,7 +345,7 @@ procedure TFormPedido.FormatGrid;
   end;
 
 begin
-  Grid.RowCount := 1;
+  LimpaGrid;
 
   DefColumn(COL_IDPEDIDO_ITEM,  'id',            0, taLeftJustify);
   DefColumn(COL_IDPRODUTO,      'Produto',      80, taLeftJustify);

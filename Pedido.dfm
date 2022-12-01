@@ -25,7 +25,6 @@ object FormPedido: TFormPedido
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitTop = 9
     object btnPesquisarPedido: TButton
       Left = 150
       Top = 0
@@ -87,7 +86,6 @@ object FormPedido: TFormPedido
     Align = alTop
     Caption = 'Pedido'
     TabOrder = 1
-    ExplicitTop = 35
     object Panel2: TPanel
       Left = 7
       Top = 42
@@ -95,7 +93,7 @@ object FormPedido: TFormPedido
       Height = 21
       BevelOuter = bvNone
       TabOrder = 2
-      object Label2: TLabel
+      object lblCliente: TLabel
         AlignWithMargins = True
         Left = 124
         Top = 0
@@ -150,7 +148,7 @@ object FormPedido: TFormPedido
         Margins.Right = 0
         Margins.Bottom = 0
         Align = alLeft
-        ReadOnly = True
+        NumbersOnly = True
         TabOrder = 0
         OnChange = edClienteChange
       end
@@ -300,7 +298,7 @@ object FormPedido: TFormPedido
         Margins.Right = 0
         Margins.Bottom = 0
         Align = alLeft
-        ReadOnly = True
+        NumbersOnly = True
         TabOrder = 0
         OnChange = edProdutoChange
       end
@@ -387,8 +385,6 @@ object FormPedido: TFormPedido
       Align = alBottom
       BevelOuter = bvNone
       TabOrder = 3
-      ExplicitLeft = 3
-      ExplicitTop = 62
       object btnInserirProduto: TButton
         Left = 0
         Top = 0

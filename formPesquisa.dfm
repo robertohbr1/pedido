@@ -43,16 +43,7 @@ object Pesquisa: TPesquisa
         Visible = True
       end>
   end
-  object WktechConnection: TFDConnection
-    Params.Strings = (
-      'ConnectionDef=wktech')
-    Connected = True
-    LoginPrompt = False
-    Left = 242
-    Top = 60
-  end
   object Table: TFDQuery
-    Connection = WktechConnection
     SQL.Strings = (
       'SELECT idpedido codigo, '#39'teste'#39' descricao FROM wktech.pedido')
     Left = 242
