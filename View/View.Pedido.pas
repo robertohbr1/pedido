@@ -13,7 +13,7 @@ uses
   Vcl.Grids, Data.Bind.EngExt, Vcl.Bind.DBEngExt, System.Rtti,
   System.Bindings.Outputs, Vcl.Bind.Editors, Data.Bind.Components,
   Data.Bind.DBScope, Vcl.Mask, Vcl.DBCtrls, System.ImageList, Vcl.ImgList,
-  Vcl.NumberBox, Vcl.WinXPickers;
+  Vcl.NumberBox, Vcl.WinXPickers, Controller.Pedido;
 
 type
   TFormPedido = class(TForm)
@@ -74,6 +74,7 @@ type
     procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
+    ctPedido: TControllerPedido;
     procedure EditarProduto;
     procedure ConfigProduto(bEnabled: boolean);
     procedure ConfigAlterarProduto;
@@ -116,7 +117,7 @@ implementation
 
 {$R *.dfm}
 
-uses Math, View.Pesquisa, Controller.Utils;
+uses Math, View.Pesquisa, Controller.Utilities;
 
 Const EditState = [dsEdit, dsInsert];
 
@@ -127,19 +128,16 @@ begin
 end;
 
 procedure TFormPedido.BuscaPedido(Chave: string);
-var Query: TFDQuery;
 begin
   if Chave = '' then
     exit;
 
-  AbreQuery(Query, 'select * from pedido where idpedido = ' + Chave);
+  ctPedido.Read(Chave);
 
-  edPedido.Text := Query.FieldByName('idpedido').AsString;
-  edEmissao.Date := Query.FieldByName('data_emissao').AsDateTime;
-  edCliente.Text := Query.FieldByName('idcliente').AsString;
-  nbTotal.Value := Query.FieldByName('valor_total').AsFloat;
-
-  FechaQuery(Query);
+  edPedido.Text := IntToStr(ctPedido.idpedido);
+  edEmissao.Date := ctPedido.data_emissao;
+  edCliente.Text := IntToStr(ctPedido.idcliente);
+  nbTotal.Value := ctPedido.valor_total;
 
   CarregaGrid;
 end;
@@ -371,6 +369,8 @@ procedure TFormPedido.FormCreate(Sender: TObject);
 begin
   AbreDM;
 
+  ctPedido := TControllerPedido.Create;
+
   FormatGrid;
   VaiUltimoPedido;
   AjustaBotoesPrincipais(False);
@@ -378,6 +378,8 @@ end;
 
 procedure TFormPedido.FormDestroy(Sender: TObject);
 begin
+  FreeAndNil(ctPedido);
+
   FechaDM;
 end;
 
@@ -420,21 +422,14 @@ procedure TFormPedido.GravarPedido;
 begin
   TransStart;
   try
-    if edPedido.text = '' then
-    begin
-      ExecSql('Insert into pedido (idcliente,data_emissao,valor_total) values'
-        + '(' + edCliente.text + ',' + DateToSql(edEmissao.Date) + ','
-        + FloatToSql(nbTotal.Value) + ')');
-      edPedido.Text := BuscaValor('SELECT LAST_INSERT_ID()');
-    end
-    else
-    begin
-      ExecSql('update pedido set '
-      + ' idcliente = ' + edCliente.text + ','
-      + ' data_emissao = ' + DateToSql(edEmissao.Date) + ','
-      + ' valor_total = ' + FloatToSql(nbTotal.Value)
-      + ' where idpedido = ' + edPedido.Text);
-    end;
+    ctPedido.idcliente := StrToInt(edCliente.text);
+    ctPedido.data_emissao := edEmissao.Date;
+    ctPedido.valor_total := nbTotal.Value;
+    ctPedido.idpedido := StrToInt('0' + edPedido.Text);
+
+    ctPedido.Save;
+    edPedido.Text := IntToStr(ctPedido.idPedido);
+
     GravaGrid;
 
   except

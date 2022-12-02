@@ -3,11 +3,11 @@ unit Model.Main;
 interface
 
 uses
-  System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
-  FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
-  FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQL,
-  FireDAC.Phys.MySQLDef, FireDAC.VCLUI.Wait, FireDAC.Comp.UI, Data.DB,
-  FireDAC.Comp.Client, Data.Win.ADODB;
+  System.SysUtils, FireDAC.Phys.MySQLDef, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.Phys.MySQL, FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client,
+  System.Classes;
 
 type
   TDM = class(TDataModule)
@@ -30,7 +30,7 @@ implementation
 
 {$R *.dfm}
 
-uses IniFiles, Controller.Utils, Vcl.Dialogs;
+uses IniFiles, Vcl.Dialogs, Controller.Utilities;
 
 procedure TDM.AbreConnection;
 var oArquivoINI: Tinifile;
