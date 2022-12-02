@@ -137,7 +137,7 @@
             <Form>Pesquisa</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Controler\Controler.Utils.pas"/>
+        <DCCReference Include="Controller\Controller.Utils.pas"/>
         <DCCReference Include="Model\Model.Main.pas">
             <Form>DM</Form>
             <FormType>dfm</FormType>

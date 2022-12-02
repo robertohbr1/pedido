@@ -114,14 +114,13 @@ object FormPedido: TFormPedido
         Left = 3
         Top = 0
         Width = 37
-        Height = 21
+        Height = 13
         Margins.Top = 0
         Margins.Right = 0
         Margins.Bottom = 0
         Align = alLeft
         Caption = 'Cliente:'
         Layout = tlCenter
-        ExplicitHeight = 13
       end
       object btnBuscaCliente: TButton
         AlignWithMargins = True
@@ -165,14 +164,13 @@ object FormPedido: TFormPedido
         Left = 3
         Top = 0
         Width = 42
-        Height = 21
+        Height = 13
         Margins.Top = 0
         Margins.Right = 0
         Margins.Bottom = 0
         Align = alLeft
         Caption = 'Emiss'#227'o:'
         Layout = tlCenter
-        ExplicitHeight = 13
       end
       object edEmissao: TDatePicker
         AlignWithMargins = True
@@ -206,14 +204,13 @@ object FormPedido: TFormPedido
         Left = 3
         Top = 0
         Width = 36
-        Height = 21
+        Height = 13
         Margins.Top = 0
         Margins.Right = 0
         Margins.Bottom = 0
         Align = alLeft
         Caption = 'Pedido:'
         Layout = tlCenter
-        ExplicitHeight = 13
       end
       object edPedido: TEdit
         AlignWithMargins = True
@@ -264,14 +261,13 @@ object FormPedido: TFormPedido
         Left = 3
         Top = 0
         Width = 42
-        Height = 21
+        Height = 13
         Margins.Top = 0
         Margins.Right = 0
         Margins.Bottom = 0
         Align = alLeft
         Caption = 'Produto:'
         Layout = tlCenter
-        ExplicitHeight = 13
       end
       object btnBuscaProduto: TButton
         AlignWithMargins = True
@@ -315,14 +311,13 @@ object FormPedido: TFormPedido
         Left = 3
         Top = 0
         Width = 22
-        Height = 21
+        Height = 13
         Margins.Top = 0
         Margins.Right = 0
         Margins.Bottom = 0
         Align = alLeft
         Caption = 'Qtd:'
         Layout = tlCenter
-        ExplicitHeight = 13
       end
       object nbQtd: TNumberBox
         AlignWithMargins = True
@@ -352,14 +347,13 @@ object FormPedido: TFormPedido
         Left = 3
         Top = 0
         Width = 50
-        Height = 21
+        Height = 13
         Margins.Top = 0
         Margins.Right = 0
         Margins.Bottom = 0
         Align = alLeft
         Caption = 'Valor Unit:'
         Layout = tlCenter
-        ExplicitHeight = 13
       end
       object nbValor: TNumberBox
         AlignWithMargins = True
@@ -428,14 +422,13 @@ object FormPedido: TFormPedido
         Left = 3
         Top = 0
         Width = 28
-        Height = 21
+        Height = 13
         Margins.Top = 0
         Margins.Right = 0
         Margins.Bottom = 0
         Align = alLeft
         Caption = 'Total:'
         Layout = tlCenter
-        ExplicitHeight = 13
       end
       object nbTotal: TNumberBox
         AlignWithMargins = True

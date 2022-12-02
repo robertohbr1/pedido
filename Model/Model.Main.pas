@@ -30,7 +30,7 @@ implementation
 
 {$R *.dfm}
 
-uses IniFiles, Controler.Utils, Vcl.Dialogs;
+uses IniFiles, Controller.Utils, Vcl.Dialogs;
 
 procedure TDM.AbreConnection;
 var oArquivoINI: Tinifile;

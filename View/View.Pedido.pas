@@ -116,7 +116,7 @@ implementation
 
 {$R *.dfm}
 
-uses Math, View.Pesquisa, Controler.Utils;
+uses Math, View.Pesquisa, Controller.Utils;
 
 Const EditState = [dsEdit, dsInsert];
 
