@@ -72,6 +72,7 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure GridKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormDestroy(Sender: TObject);
+    procedure btnLimparProdutoClick(Sender: TObject);
   private
     { Private declarations }
     ctPedido: TControllerPedido;
@@ -89,10 +90,10 @@ type
     procedure VaiUltimoPedido;
     procedure CarregaGrid;
     procedure FormatGrid;
-    procedure GravaGrid;
     procedure LimpaGrid;
-    procedure InsereGrid(idpedido_item, idproduto: integer; descricao: string; qtd, valor_unit: double);
-    procedure UpdateGrid(row: integer; qtd, valor_unit: double);
+    procedure ValidaItemPendente;
+    procedure InsereGrid(idpedido_item, idproduto: integer; descricao: string; qtd, valor_unit, valor_total: double);
+    procedure UpdateGrid(row: integer; qtd, valor_unit, valor_total: double);
 
   public
     { Public declarations }
@@ -117,7 +118,7 @@ implementation
 
 {$R *.dfm}
 
-uses Math, View.Pesquisa, Controller.Utilities;
+uses Math, View.Pesquisa, Controller.Utilities, View.Utilities;
 
 Const EditState = [dsEdit, dsInsert];
 
@@ -134,10 +135,13 @@ begin
 
   ctPedido.Read(Chave);
 
-  edPedido.Text := IntToStr(ctPedido.idpedido);
-  edEmissao.Date := ctPedido.data_emissao;
-  edCliente.Text := IntToStr(ctPedido.idcliente);
-  nbTotal.Value := ctPedido.valor_total;
+  With ctPedido do
+  begin
+    edPedido.Text := IntToStr(idpedido);
+    edEmissao.Date := data_emissao;
+    edCliente.Text := IntToStr(idcliente);
+    nbTotal.Value := valor_total;
+  end;
 
   CarregaGrid;
 end;
@@ -156,15 +160,17 @@ begin
   btnPesquisarPedido.Visible := not bEdicao;
   btnAlterarPedido.Visible := not bEdicao;
   btnCriarPedido.Visible := not bEdicao;
+
   btnGravarPedido.Visible := bEdicao;
   btnCancelarPedido.Visible := bEdicao;
+  btnCancelarProduto.Visible := bEdicao;
   btnInserirProduto.Visible := bEdicao;
-  edEmissao.Enabled := bEdicao;
   btnBuscaCliente.Visible := bEdicao;
+  btnBuscaProduto.Visible := bEdicao;
+
+  edEmissao.Enabled := bEdicao;
   nbQtd.Enabled := bEdicao;
   nbValor.Enabled := bEdicao;
-
-  btnBuscaProduto.Visible := bEdicao;
 end;
 
 procedure TFormPedido.ApagarProduto;
@@ -206,6 +212,7 @@ end;
 procedure TFormPedido.btnGravarPedidoClick(Sender: TObject);
 begin
   ValidaCodigoExiste(edCliente, lblCliente.Caption);
+  ValidaItemPendente;
 
   GravarPedido;
   AjustaBotoesPrincipais(False);
@@ -227,12 +234,14 @@ procedure TFormPedido.ConfigAlterarProduto;
 begin
   ConfigProduto(False);
   btnInserirProduto.Caption := 'Alterar';
+  btnCancelarProduto.Caption := 'Cancelar';
 end;
 
 procedure TFormPedido.ConfigInserirProduto;
 begin
   ConfigProduto(True);
   btnInserirProduto.Caption := 'Inserir';
+  btnCancelarProduto.Caption := 'Limpar';
 end;
 
 procedure TFormPedido.LimpaCampos;
@@ -252,7 +261,24 @@ end;
 
 procedure TFormPedido.VaiUltimoPedido;
 begin
-  BuscaPedido(BuscaValor('select max(idpedido) from pedido'));
+  BuscaPedido(ctPedido.Ultimo.ToString);
+end;
+
+procedure TFormPedido.ValidaItemPendente;
+
+  procedure GeraRaise(Msg: string);
+  begin
+    raise Exception.Create('Item ainda não foi ' + Msg + ' no Grid.')
+  end;
+
+begin
+  if edProduto.text <> '' then
+  begin
+    if btnInserirProduto.Caption = 'Inserir' then
+      GeraRaise('Inserido')
+    else
+      GeraRaise('Alterado');
+  end;
 end;
 
 procedure TFormPedido.LimpaProduto;
@@ -266,7 +292,6 @@ procedure TFormPedido.ConfigProduto(bEnabled: boolean);
 begin
   Grid.Enabled := bEnabled;
   btnBuscaProduto.Visible := bEnabled;
-  btnCancelarProduto.Visible := not bEnabled;
 end;
 
 procedure TFormPedido.btnCancelarProdutoClick(Sender: TObject);
@@ -277,8 +302,7 @@ end;
 
 procedure TFormPedido.btnCancelarPedidoClick(Sender: TObject);
 begin
-  if btnCancelarProduto.Visible then
-    btnCancelarProduto.Click;
+  btnCancelarProduto.Click;
   AjustaBotoesPrincipais(False);
   VaiUltimoPedido;
 end;
@@ -292,10 +316,10 @@ begin
   ValidaZero(nbValor, nbValor.Value, 'Informe o Valor Unitário');
 
   if Grid.Enabled then
-    InsereGrid(0, StrToInt(edProduto.Text), lblProduto.Caption, nbQtd.Value, nbValor.Value)
+    InsereGrid(0, StrToInt(edProduto.Text), lblProduto.Caption, nbQtd.Value, nbValor.Value, nbQtd.Value * nbValor.Value)
   else
   begin
-    UpdateGrid(Grid.Row, nbQtd.Value, nbValor.Value);
+    UpdateGrid(Grid.Row, nbQtd.Value, nbValor.Value, nbQtd.Value * nbValor.Value);
     ConfigInserirProduto;
   end;
 
@@ -303,35 +327,37 @@ begin
   CalculaTotal;
 end;
 
+procedure TFormPedido.btnLimparProdutoClick(Sender: TObject);
+begin
+  LimpaProduto;
+end;
+
 procedure TFormPedido.edClienteChange(Sender: TObject);
 begin
-  lblCliente.Caption := BuscaDescricao('Select nome from cliente where idcliente = ', edCliente.Text);
+  lblCliente.Caption := BuscaDescricaoCliente(edCliente.Text);
 end;
 
 procedure TFormPedido.CarregaGrid;
-var Query: TFDQuery;
+var x: Integer;
 begin
   LimpaGrid;
-
-  AbreQuery(Query, 'SELECT pedido_item.*, produto.descricao '
-      + ' FROM pedido_item '
-      + ' inner join produto on pedido_item.idproduto = produto.idproduto '
-      + ' where pedido_item.idpedido = ' + edPedido.Text);
-  while not Query.Eof do
-  begin
-    InsereGrid( Query.FieldByName('idpedido_item').AsInteger,
-                Query.FieldByName('idproduto').AsInteger,
-                Query.FieldByName('descricao').AsString,
-                Query.FieldByName('qtd').AsFloat,
-                Query.FieldByName('valor_unit').AsFloat);
-    Query.Next;
-  end;
-  FechaQuery(Query);
+  with ctPedido do
+    for x := 0 to PedidoItem.Count - 1 do
+    begin
+      with ctPedido.PedidoItem[x] do
+        InsereGrid(
+            idpedido_item,
+            idproduto,
+            descricao,
+            qtd,
+            valor_unit,
+            valor_total);
+    end;
 end;
 
 procedure TFormPedido.edProdutoChange(Sender: TObject);
 begin
-  lblProduto.Caption := BuscaDescricao('Select descricao from produto where idproduto = ', edProduto.Text);
+  lblProduto.Caption := BuscaDescricaoProduto(edProduto.Text);
 end;
 
 procedure TFormPedido.FormatGrid;
@@ -383,63 +409,33 @@ begin
   FechaDM;
 end;
 
-procedure TFormPedido.GravaGrid;
-var
-  x: Integer;
-begin
-  // Marca os Itens com qtd = -1, para Deletar os que foram removidos do Grid
-  ExecSql('update pedido_item set qtd = -1 where idpedido = ' + edPedido.Text);
-
-  for x := 1 to Grid.RowCount -1 do
-  begin
-    if Grid.Cells[COL_IDPEDIDO_ITEM, x] = '0' then
-      ExecSql('Insert into pedido_item '
-          + '(idpedido,'
-          + 'idproduto,'
-          + 'qtd,'
-          + 'valor_unit,'
-          + 'valor_total)'
-          + ' values'
-          + '(' + edPedido.Text + ','
-          + Grid.Cells[COL_IDPRODUTO, x] + ','
-          + FloatToSql(Grid.Cells[COL_QTD, x].ToDouble) + ','
-          + FloatToSql(Grid.Cells[COL_VALOR_UNIT, x].ToDouble) + ','
-          + ' round(' + FloatToSql(Grid.Cells[COL_QTD, x].ToDouble) + ' * ' + FloatToSql(Grid.Cells[COL_VALOR_UNIT, x].ToDouble) + ', 2))')
-    else
-      ExecSql('Update pedido_item set '
-          + ' idproduto = ' + Grid.Cells[COL_IDPRODUTO, x] + ','
-          + ' qtd = ' + FloatToSql(Grid.Cells[COL_QTD, x].ToDouble) + ','
-          + ' valor_unit = ' + FloatToSql(Grid.Cells[COL_VALOR_UNIT, x].ToDouble) + ','
-          + ' valor_total = ' + ' Round(' + FloatToSql(Grid.Cells[COL_QTD, x].ToDouble) + ' * ' + FloatToSql(Grid.Cells[COL_VALOR_UNIT, x].ToDouble) + ', 2)'
-          + ' where idpedido_item = ' + Grid.Cells[COL_IDPEDIDO_ITEM, x]);
-  end;
-
-  // Apaga os Itens com qtd = -1, pois foram removidos do Grid
-  ExecSql('delete from pedido_item where idpedido = ' + edPedido.Text + ' and qtd = -1');
-end;
-
 procedure TFormPedido.GravarPedido;
+var x: Integer;
 begin
-  TransStart;
-  try
-    ctPedido.idcliente := StrToInt(edCliente.text);
-    ctPedido.data_emissao := edEmissao.Date;
-    ctPedido.valor_total := nbTotal.Value;
-    ctPedido.idpedido := StrToInt('0' + edPedido.Text);
+  With ctPedido do
+  begin
+    idcliente := StrToInt(edCliente.text);
+    data_emissao := edEmissao.Date;
+    valor_total := nbTotal.Value;
+    idpedido := StrToInt('0' + edPedido.Text);
 
-    ctPedido.Save;
-    edPedido.Text := IntToStr(ctPedido.idPedido);
+    LimpaItens;
 
-    GravaGrid;
-
-  except
-  on E: Exception do
+    for x := 1 to Grid.RowCount -1 do
     begin
-      TransRollBack;
-      raise Exception.Create(E.Message);
+      AddItem(
+          Grid.Cells[COL_IDPEDIDO_ITEM, x].ToInteger,
+          Grid.Cells[COL_IDPRODUTO, x].ToInteger,
+          Grid.Cells[COL_DESCRICAO, x],
+          Grid.Cells[COL_QTD, x].ToDouble,
+          Grid.Cells[COL_VALOR_UNIT, x].ToDouble,
+          Grid.Cells[COL_VALOR_TOTAL, x].ToDouble);
     end;
+
+    Save;
+
+    BuscaPedido(IntToStr(idPedido));
   end;
-  TransCommit;
 end;
 
 procedure TFormPedido.GridKeyDown(Sender: TObject; var Key: Word;
@@ -455,7 +451,7 @@ begin
 end;
 
 procedure TFormPedido.InsereGrid(idpedido_item, idproduto: integer;
-  descricao: string; qtd, valor_unit: double);
+  descricao: string; qtd, valor_unit, valor_total: double);
 var x: integer;
 begin
   Grid.RowCount := Grid.RowCount + 1;
@@ -463,20 +459,22 @@ begin
   Grid.Cells[COL_IDPEDIDO_ITEM, x] := idpedido_item.ToString;
   Grid.Cells[COL_IDPRODUTO, x] := idproduto.ToString;
   Grid.Cells[COL_DESCRICAO, x] := descricao;
-  UpdateGrid(x, qtd, valor_unit);
+  UpdateGrid(x, qtd, valor_unit, valor_total);
 end;
 
-procedure TFormPedido.UpdateGrid(row: integer; qtd, valor_unit: double);
+procedure TFormPedido.UpdateGrid(row: integer; qtd, valor_unit, valor_total: double);
 begin
   Grid.Cells[COL_QTD, row]         := FormatFloat('#0.00', qtd);
   Grid.Cells[COL_VALOR_UNIT, row]  := FormatFloat('#0.00', valor_unit);
-  Grid.Cells[COL_VALOR_TOTAL, row] := FormatFloat('#0.00', qtd * valor_unit);
+  Grid.Cells[COL_VALOR_TOTAL, row] := FormatFloat('#0.00', valor_total);
 end;
 
 procedure TFormPedido.EditarProduto;
 begin
   if not btnGravarPedido.Visible then
     exit;
+
+  ValidaItemPendente;
 
   edProduto.Text  := Grid.Cells[COL_IDPRODUTO, Grid.Row];
   nbQtd.Value     := Grid.Cells[COL_QTD, Grid.Row].ToDouble;

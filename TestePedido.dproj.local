@@ -17,28 +17,32 @@
     <Transaction>2022/11/29 15:18:35.000.587,C:\Projetos\Job\WKTech\Browse.pas=</Transaction>
     <Transaction>2022/11/30 23:11:47.000.980,=C:\Projetos\Job\WKTech\Unit1.pas</Transaction>
     <Transaction>2022/11/30 23:12:28.000.698,C:\Projetos\Job\WKTech\Utils.pas=C:\Projetos\Job\WKTech\Unit1.pas</Transaction>
-    <Transaction>2022/11/30 23:22:02.000.824,C:\Projetos\Job\WKTech\DMConnection.dfm=C:\Projetos\Job\WKTech\DM.dfm</Transaction>
     <Transaction>2022/11/30 23:22:02.000.824,C:\Projetos\Job\WKTech\DMConnection.pas=C:\Projetos\Job\WKTech\DM.pas</Transaction>
+    <Transaction>2022/11/30 23:22:02.000.824,C:\Projetos\Job\WKTech\DMConnection.dfm=C:\Projetos\Job\WKTech\DM.dfm</Transaction>
     <Transaction>2022/11/30 23:33:00.000.614,C:\Projetos\Job\WKTech\DMConnection.pas=</Transaction>
     <Transaction>2022/11/30 23:33:11.000.958,=C:\Projetos\Job\WKTech\DM.pas</Transaction>
-    <Transaction>2022/11/30 23:34:48.000.568,C:\Projetos\Job\WKTech\DMMain.dfm=C:\Projetos\Job\WKTech\DM.dfm</Transaction>
     <Transaction>2022/11/30 23:34:48.000.568,C:\Projetos\Job\WKTech\DMMain.pas=C:\Projetos\Job\WKTech\DM.pas</Transaction>
+    <Transaction>2022/11/30 23:34:48.000.568,C:\Projetos\Job\WKTech\DMMain.dfm=C:\Projetos\Job\WKTech\DM.dfm</Transaction>
     <Transaction>2022/12/01 18:57:53.000.643,C:\Projetos\Job\WKTech2\formPesquisa.pas=C:\Projetos\Job\WKTech2\View\View.Pesquisa.pas</Transaction>
     <Transaction>2022/12/01 18:57:53.000.643,C:\Projetos\Job\WKTech2\formPesquisa.dfm=C:\Projetos\Job\WKTech2\View\View.Pesquisa.dfm</Transaction>
-    <Transaction>2022/12/01 18:58:41.000.612,C:\Projetos\Job\WKTech2\Pedido.pas=C:\Projetos\Job\WKTech2\View\View.Pedido.pas</Transaction>
     <Transaction>2022/12/01 18:58:41.000.612,C:\Projetos\Job\WKTech2\Pedido.dfm=C:\Projetos\Job\WKTech2\View\View.Pedido.dfm</Transaction>
+    <Transaction>2022/12/01 18:58:41.000.612,C:\Projetos\Job\WKTech2\Pedido.pas=C:\Projetos\Job\WKTech2\View\View.Pedido.pas</Transaction>
     <Transaction>2022/12/01 18:59:28.000.081,C:\Projetos\Job\WKTech2\DMMain.dfm=C:\Projetos\Job\WKTech2\Model\Model.Main.dfm</Transaction>
     <Transaction>2022/12/01 18:59:28.000.081,C:\Projetos\Job\WKTech2\DMMain.pas=C:\Projetos\Job\WKTech2\Model\Model.Main.pas</Transaction>
     <Transaction>2022/12/01 19:01:37.000.925,C:\Projetos\Job\WKTech2\Utils.pas=C:\Projetos\Job\WKTech2\Controler\Controler.Utils.pas</Transaction>
-    <Transaction>2022/12/01 23:38:39.239,C:\Projetos\Job\WKTech2\Controller\Controller.Utils.pas=C:\Projetos\Job\WKTech2\Controler\Controler.Utils.pas</Transaction>
-    <Transaction>2022/12/01 23:42:35.978,=C:\Projetos\Job\WKTech2\Unit1.pas</Transaction>
-    <Transaction>2022/12/01 23:42:53.390,C:\Projetos\Job\WKTech2\Model\Model.Pedido.pas=C:\Projetos\Job\WKTech2\Unit1.pas</Transaction>
-    <Transaction>2022/12/02 00:21:52.786,=C:\Projetos\Job\WKTech2\Unit1.pas</Transaction>
-    <Transaction>2022/12/02 00:22:12.043,C:\Projetos\Job\WKTech2\Controller\Controller.Pedido.pas=C:\Projetos\Job\WKTech2\Unit1.pas</Transaction>
-    <Transaction>2022/12/02 01:02:28.065,C:\Projetos\Job\WKTech2\Controller\Controller.Utilities.pas=C:\Projetos\Job\WKTech2\Controller\Controller.Utils.pas</Transaction>
-    <Transaction>2022/12/02 01:09:54.774,C:\Projetos\Job\WKTech2\Controller\ControllerUtilities.pas=C:\Projetos\Job\WKTech2\Controller\Controller.Utilities.pas</Transaction>
-    <Transaction>2022/12/02 01:11:14.854,C:\Projetos\Job\WKTech2\Controller\ControllerUtilities.pas=</Transaction>
-    <Transaction>2022/12/02 01:11:36.729,=C:\Projetos\Job\WKTech2\Controller\Controller.Utilities.pas</Transaction>
+    <Transaction>2022/12/01 23:38:39.000.239,C:\Projetos\Job\WKTech2\Controller\Controller.Utils.pas=C:\Projetos\Job\WKTech2\Controler\Controler.Utils.pas</Transaction>
+    <Transaction>2022/12/01 23:42:35.000.978,=C:\Projetos\Job\WKTech2\Unit1.pas</Transaction>
+    <Transaction>2022/12/01 23:42:53.000.390,C:\Projetos\Job\WKTech2\Model\Model.Pedido.pas=C:\Projetos\Job\WKTech2\Unit1.pas</Transaction>
+    <Transaction>2022/12/02 00:21:52.000.786,=C:\Projetos\Job\WKTech2\Unit1.pas</Transaction>
+    <Transaction>2022/12/02 00:22:12.000.043,C:\Projetos\Job\WKTech2\Controller\Controller.Pedido.pas=C:\Projetos\Job\WKTech2\Unit1.pas</Transaction>
+    <Transaction>2022/12/02 01:02:28.000.065,C:\Projetos\Job\WKTech2\Controller\Controller.Utilities.pas=C:\Projetos\Job\WKTech2\Controller\Controller.Utils.pas</Transaction>
+    <Transaction>2022/12/02 01:09:54.000.774,C:\Projetos\Job\WKTech2\Controller\ControllerUtilities.pas=C:\Projetos\Job\WKTech2\Controller\Controller.Utilities.pas</Transaction>
+    <Transaction>2022/12/02 01:11:14.000.854,C:\Projetos\Job\WKTech2\Controller\ControllerUtilities.pas=</Transaction>
+    <Transaction>2022/12/02 01:11:36.000.729,=C:\Projetos\Job\WKTech2\Controller\Controller.Utilities.pas</Transaction>
+    <Transaction>2022/12/02 20:47:56.458,=C:\Projetos\Job\WKTech2\Unit1.pas</Transaction>
+    <Transaction>2022/12/02 20:48:11.212,C:\Projetos\Job\WKTech2\Model\Model.Selects.pas=C:\Projetos\Job\WKTech2\Unit1.pas</Transaction>
+    <Transaction>2022/12/02 20:55:39.611,=C:\Projetos\Job\WKTech2\Unit1.pas</Transaction>
+    <Transaction>2022/12/02 20:55:54.595,C:\Projetos\Job\WKTech2\View\View.Utilities.pas=C:\Projetos\Job\WKTech2\Unit1.pas</Transaction>
   </Transactions>
 	<BT_BuildType>Debug</BT_BuildType>
 </BorlandProject>

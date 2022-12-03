@@ -4,8 +4,6 @@ interface
 
 uses FireDAC.Comp.Client, Vcl.Controls, Winapi.Windows, Vcl.Forms;
 
-procedure SendKeysTab;
-
 procedure TransStart;
 procedure TransCommit;
 procedure TransRollBack;
@@ -23,6 +21,8 @@ procedure FechaQuery(var Query: TFDQuery);
 
 function BuscaValor(SQL: string): string;
 function BuscaDescricao(SQL: string; Valor: string): string;
+function BuscaDescricaoCliente(Valor: string): string;
+function BuscaDescricaoProduto(Valor: string): string;
 
 procedure ValidaZero(Controle: TWinControl; Valor: Double; Msg: string);
 procedure ValidaVazio(Controle: TWinControl; Valor: string; Msg: string);
@@ -31,67 +31,50 @@ procedure ValidaCodigoExiste(Controle: TWinControl; Valor: string);
 procedure Mostrar(sMensagem : string);
 Function Perguntar(sMensagem : string; iDefault : integer = MB_DEFBUTTON1) : Boolean;
 
-
 CONST NAO_ENCONTRADO = '*** Não encontrado ***';
 
 implementation
 
-uses System.SysUtils, Model.Main;
-
-procedure SendKeysTab;
-begin
-  keybd_event(VK_TAB, 0, 0, 0);
-  keybd_event(VK_TAB, 0, KEYEVENTF_KEYUP, 0);
-end;
+uses System.SysUtils, Model.Main, Model.Selects;
 
 function DateToSql(Data: TDate): string;
 begin
-  result := '''' + FormatDateTime('yyyy/mm/dd', Data) + '''';
+  result := mdDateToSql(Data);
 end;
 
 function FloatToSql(Value: Double): string;
 begin
-  result := FloatToStr(Value).Replace(',', '.');
+  result := mdFloatToSql(Value);
 end;
 
 procedure ExecSql(SQL: string);
 begin
-  DM.WktechConnection.ExecSQL(SQL);
+  mdExecSQL(SQL);
 end;
 
 procedure AbreDM;
 begin
-  Application.CreateForm(TDM, DM);
+  mdAbreDM;
 end;
 
 procedure FechaDM;
 begin
-  //DM.Free;
+  mdFechaDM;
 end;
 
 procedure AbreQuery(var Query: TFDQuery; Sql: string);
 begin
-  Query := TFDQuery.Create(nil);
-  Query.Connection := DM.WktechConnection;
-  Query.Sql.Text := Sql;
-  Query.Open;
+  mdAbreQuery(Query, Sql);
 end;
 
 procedure FechaQuery(var Query: TFDQuery);
 begin
-  Query.Close;
-  Query.Free;
+  mdFechaQuery(Query);
 end;
 
 function BuscaValor(SQL: string): string;
-var Query: TFDQuery;
 begin
-  AbreQuery(Query, SQL);
-  if Query.eof then
-    result := NAO_ENCONTRADO
-  else
-    result := Query.Fields[0].AsString;
-  FechaQuery(Query);
+  Result := mdBuscaValor(SQL, NAO_ENCONTRADO);
 end;
 
 function BuscaDescricao(SQL: string; Valor: string): string;
@@ -102,19 +85,29 @@ begin
     result := BuscaValor(SQL + Valor);
 end;
 
+function BuscaDescricaoCliente(Valor: string): string;
+begin
+  Result := BuscaDescricao(SelBuscaDescricaoCliente, Valor);
+end;
+
+function BuscaDescricaoProduto(Valor: string): string;
+begin
+  Result := BuscaDescricao(SelBuscaDescricaoProduto, Valor);
+end;
+
 procedure TransStart;
 begin
-  DM.WktechConnection.StartTransaction;
+  mdTransStart;
 end;
 
 procedure TransCommit;
 begin
-  DM.WktechConnection.Commit;
+  mdTransCommit;
 end;
 
 procedure TransRollBack;
 begin
-  DM.WktechConnection.Rollback;
+  mdTransRollBack;
 end;
 
 procedure GeraErro(Controle: TWinControl; Msg: string);

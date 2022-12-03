@@ -7,7 +7,9 @@ uses
   Model.Main in 'Model\Model.Main.pas' {DM: TDataModule},
   Model.Pedido in 'Model\Model.Pedido.pas',
   Controller.Pedido in 'Controller\Controller.Pedido.pas',
-  Controller.Utilities in 'Controller\Controller.Utilities.pas';
+  Controller.Utilities in 'Controller\Controller.Utilities.pas',
+  Model.Selects in 'Model\Model.Selects.pas',
+  View.Utilities in 'View\View.Utilities.pas';
 
 {$R *.res}
 

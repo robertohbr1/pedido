@@ -395,9 +395,8 @@ object FormPedido: TFormPedido
         Width = 75
         Height = 38
         Align = alLeft
-        Caption = 'Cancelar'
+        Caption = 'Limpar'
         TabOrder = 1
-        Visible = False
         OnClick = btnCancelarProdutoClick
       end
     end
